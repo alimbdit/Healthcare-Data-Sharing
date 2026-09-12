@@ -261,6 +261,7 @@ export default function App() {
         targetPatientAddress,
         sampleIpfsHash,
         metadataPayload,
+        { gasLimit: 500000 }, // ম্যানুয়াল গ্যাস লিমিট
       );
       await tx.wait();
 
