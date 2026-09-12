@@ -33,7 +33,7 @@ export default function App() {
       setLoading(true);
       await checkAndSwitchNetwork();
       const contract = await getContractSigner();
-      const signerAddress = await contract.runner?.getAddress();
+      const signerAddress = await (contract.runner as any)?.getAddress();
 
       if (signerAddress) {
         setAccount(signerAddress);
