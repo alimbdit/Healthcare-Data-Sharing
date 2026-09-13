@@ -93,7 +93,7 @@ export default function App() {
       setFetchingAudit(true);
       const contract = await getContractSigner();
 
-      // Query all contract events from genesis to latest block
+      // Query all contract events from genesis to latest block using Event Name strings
       const [
         regEvents,
         grantEvents,
@@ -101,11 +101,11 @@ export default function App() {
         recordEvents,
         accessedEvents,
       ] = await Promise.all([
-        contract.queryFilter(contract.filters.UserRegistered(), 0, "latest"),
-        contract.queryFilter(contract.filters.AccessGranted(), 0, "latest"),
-        contract.queryFilter(contract.filters.AccessRevoked(), 0, "latest"),
-        contract.queryFilter(contract.filters.RecordAdded(), 0, "latest"),
-        contract.queryFilter(contract.filters.RecordAccessed(), 0, "latest"),
+        contract.queryFilter("UserRegistered", 0, "latest"),
+        contract.queryFilter("AccessGranted", 0, "latest"),
+        contract.queryFilter("AccessRevoked", 0, "latest"),
+        contract.queryFilter("RecordAdded", 0, "latest"),
+        contract.queryFilter("RecordAccessed", 0, "latest"),
       ]);
 
       const logs: AuditLogItem[] = [];
